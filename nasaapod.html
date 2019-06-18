@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Nakshatra's APOD</title>
+</head>
+
+<body>
+    
+	<div class="card mx-auto text-white bg-dark" style="width: 35rem;">
+    <div class="card-header text-center display-4">
+      Nakshatra 
+      <br>
+      <p class="lead">Astronomy Picture of the Day</p> 
+      <h5 id="apod_title"></h5>
+    </div>
+	<img class="card-img-top" id="apod_img_id" style = "display: block; margin: 0 auto;">
+		<div class="card-body">
+		<iframe id="apod_vid_id" type="text/html" width="640" height="385" frameborder="0"></iframe> 
+		<p id="apod_explaination"></p>
+		<br/>
+		</div>
+    <div class="card-footer">
+      <small class="text-white font-italic text-center">Powered by NASA's Open APOD API</small>
+    </div>
+	</div>
+
+<script id="jsbin-javascript">
+
+var url = "https://api.nasa.gov/planetary/apod?api_key=1PpGWDvabRNj3fOX16fHPeSz4gzlYZAOR0jjqcQe";
+
+
+$.ajax({
+  url: url,
+  success: function(result){
+  if(result.media_type == "video") {
+    $("#apod_img_id").css("display", "none"); 
+    $("#apod_vid_id").attr("src", result.url);
+  }
+  else {
+    $("#apod_vid_id").css("display", "none"); 
+    $("#apod_img_id").attr("src", result.url);
+  }
+  $("#reqObject").text(url);
+  $("#returnObject").text(JSON.stringify(result, null, 4));  
+  $("#apod_explaination").text(result.explanation);
+  $("#apod_title").text(result.title);
+}
+});
+
+</script>
+</body>
+</html>
