@@ -4,5 +4,3 @@ Made using NASA's Open APOD API, it is a simple JavaScript webpage styled using 
 
 + It shows the daily astronomy picture as picked by NASA along with the relevant information describing it.
 + Collection of all the newsletters published till now.
-
-Link - https://nakshatraapod.herokuapp.com/nasaapod.html
